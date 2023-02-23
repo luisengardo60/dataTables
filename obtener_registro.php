@@ -10,9 +10,9 @@ if (isset($_POST["id_usuario"])) {
     foreach($resultado as $fila){
         $salida["nombre"] = $fila["nombre"];
         $salida["apellido"] = $fila["apellido"];
-        $salida["area"] = $fila["area"];
-        $salida["telefono"] = $fila["telefono"];
         $salida["email"] = $fila["email"];
+        $salida["telefono"] = $fila["telefono"];
+        $salida["area"] = $fila["area"];        
         if ($fila["imagen"] != "") {
             $salida["imagen_usuario"] = '<img src="img/' . $fila["imagen"] . '" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="imagen_usuario_oculta" value="'.$fila["imagen"].'"';
         }else{

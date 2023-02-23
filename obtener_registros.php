@@ -18,7 +18,7 @@ if (isset($_POST["order"])){
   $_POST["order"][0]['dir'] . ' ';
 
 }else{
-  $query .= 'ORDER BY id DESC ';
+  $query .= 'ORDER BY id ASC ';
 
 }
 
@@ -44,9 +44,9 @@ $sub_array = array();
 $sub_array[] = $fila["id"];
 $sub_array[] = $fila["nombre"];
 $sub_array[] = $fila["apellido"];
-$sub_array[] = $fila["area"];
-$sub_array[] = $fila["telefono"];
 $sub_array[] = $fila["email"];
+$sub_array[] = $fila["telefono"];
+$sub_array[] = $fila["area"];
 $sub_array[] = $imagen;
 $sub_array[] ='<button type="button" name="editar" id="'.$fila["id"].'" class="btn btn-primary btn-xs editar">Editar</button>';
 $sub_array[] ='<button type="button" name="borrar" id="'.$fila["id"].'" class="btn btn-danger btn-xs borrar">Borrar</button>';

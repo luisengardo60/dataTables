@@ -15,9 +15,9 @@ if ($_POST["operacion"] == "Crear") {
     array(
       ':nombre'        => $_POST["nombre"],
       ':apellido'      => $_POST["apellido"],
-      ':area'          => $_POST["area"],
-      ':telefono'      => $_POST["telefono"],
       ':email'         => $_POST["email"],
+      ':telefono'      => $_POST["telefono"],
+      ':area'          => $_POST["area"],      
       ':imagen'        => $imagen
     )
     );
@@ -44,9 +44,9 @@ if ($_POST["operacion"] == "Editar") {
     array(
       ':nombre'        => $_POST["nombre"],
       ':apellido'      => $_POST["apellido"],
-      ':area'          => $_POST["area"],
-      ':telefono'      => $_POST["telefono"],
       ':email'         => $_POST["email"],
+      ':telefono'      => $_POST["telefono"],
+      ':area'          => $_POST["area"],      
       ':imagen'        => $imagen,
       ':id'            => $_POST["id_usuario"]
     )
