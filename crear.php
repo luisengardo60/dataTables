@@ -28,4 +28,33 @@ if ($_POST["operacion"] == "Crear") {
 
 }
 
+
+if ($_POST["operacion"] == "Editar") {
+  $imagen = '';
+  if ($_FILES["imagen_usuario"]["name"] != ''){
+    $imagen = subir_imagen();
+
+  }else{
+    $imagen = $_POST["imagen_usuario_oculta"];
+
+  }
+  $stmt = $conexion->prepare("UPDATE  usuarios SET nombre=:nombre, apellido=:apellido, area=:area, telefono=:telefono, email=:email, imagen=:imagen WHERE id = :id");
+
+  $resultado = $stmt->execute(
+    array(
+      ':nombre'        => $_POST["nombre"],
+      ':apellido'      => $_POST["apellido"],
+      ':area'          => $_POST["area"],
+      ':telefono'      => $_POST["telefono"],
+      ':email'         => $_POST["email"],
+      ':imagen'        => $imagen,
+      ':id'            => $_POST["id_usuario"]
+    )
+    );
+
+    if (!empty($resultado)) {
+       echo 'Registro Actualizado';
+    }
+
+}
 ?>

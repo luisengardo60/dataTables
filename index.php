@@ -46,7 +46,7 @@
         <!--<th>Cargo</th>-->
         <!--<th>Gerencia</th>-->
         <th>Área</th>
-        <th>Teléfono Celular</th>
+        <th>Teléfono</th>
         <th>Email</th>
         <th>Imagen</th>
         <!--<th>Fecha de Creación</th>-->
@@ -78,30 +78,31 @@
                 <label for="apellido">Ingrese los apellidos</label>
                 <input type="text" name="apellido" id="apellido" class="form-control"><br>
 
+                <label for="area">Ingrese el Área</label>
+                <input type="text" name="area" id="area" class="form-control"><br>
+
                 <label for="telefono">Ingrese el número de teléfono o celular</label>
                 <input type="text" name="telefono" id="telefono" class="form-control"><br>
 
                 <label for="email">Ingrese el correo</label>
                 <input type="email" name="email" id="email" class="form-control"><br>
 
-            <!--<label for="cargo">Ingrese el cargo</label>
-            <input type="text" name="cargo" id="cargo" class="form-control"><br>-->
+                <!--<label for="cargo">Ingrese el cargo</label>
+                <input type="text" name="cargo" id="cargo" class="form-control"><br>-->
 
-            <!--<label for="gerencia">Ingrese la Gerencia</label>
-            <input type="text" name="gerencia" id="gerencia" class="form-control"><br>-->
+                <!--<label for="gerencia">Ingrese la Gerencia</label>
+                <input type="text" name="gerencia" id="gerencia" class="form-control"><br>-->
 
-                <label for="area">Ingrese el Área</label>
-                <input type="text" name="area" id="area" class="form-control"><br>
 
                 <label for="imagen">Seleccione una imagen</label>
                 <input type="file" name="imagen_usuario" id="imagen_usuario" class="form-control">
-                <span id="imagen-subida"></span><br>
+                <span id="imagen_subida"></span><br>
 
 </div>
 
       <div class="modal-footer">
-        <input type="hiddeen" name="id_usuario" id="id_usuario">
-        <input type="hiddeen" name="operacion" id="operacion">
+        <input type="hidden" name="id_usuario" id="id_usuario">
+        <input type="hidden" name="operacion" id="operacion">
         <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
       </div>
 </div>
@@ -115,7 +116,7 @@
 
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>-->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
@@ -127,13 +128,13 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $("#botonCrear").click(function(){
-            $("#formulario")[0].reset();
+          $("#formulario")[0].reset();
             $(".modal-title").text("Crear Usuario");
             $("#action").val("Crear");
             $("#operacion").val("Crear");
             $("#imagen_subida").html("");
-        });
-
+                });
+      
         var dataTable = $('#datos_usuario').DataTable({
           "processing":true,
           "serverSide":true,
@@ -148,6 +149,7 @@
             "orderable":false,
             },
           ]
+        });
           
         });
 
@@ -162,10 +164,12 @@
         var email = $("#email").val();
         var extension = $("#imagen_usuario").val().split('.').pop().toLowerCase();
 
-        if (extension != ''){
-          if(jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1){
+        if(extension != '')
+        {
+          if(jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1)
+          {
           alert("Formato de imagen inválido");
-          $("#imagen_usuario").val('');
+          //$("#imagen_usuario").val('');
           return false;
         }
       }
@@ -191,7 +195,7 @@
       });
 
       //Funcion de editar
-      $(document).on('click', '.editar', function()){
+      $(document).on('click', '.editar', function(){
         var id_usuario = $(this).attr("id");
         $.ajax({
           url:"obtener_registro.php",
@@ -216,11 +220,32 @@
 
     },
     error: function(jqXHR, textStatus, errorTrhown) {
-      console.log(textStatus, errorTrhown);
+    console.log(textStatus, errorTrhown);
     }
 
   })
   });
+
+  //Funcion borrar
+  $(document).on('click', '.borrar', function(){
+        var id_usuario = $(this).attr("id");
+        if(confirm("Esta seguro de borrar este registro" + id_usuario))
+        {
+        $.ajax({
+          url:"borrar.php",
+          method:"POST",
+          data:{id_usuario:id_usuario},
+          success:function(data)
+        {
+          alert(data);
+          dataTable.ajax.reload();
+        }
+        });
+        }else{
+          return false;
+        }
+
+      });
  </script>
 
   </body>

@@ -14,7 +14,14 @@ if (isset($_POST["id_usuario"])) {
         $salida["telefono"] = $fila["telefono"];
         $salida["email"] = $fila["email"];
         if ($fila["imagen"] != "") {
-            $salida["nombre"] = '<img src="img/' . $fila["imagen"] . '" class="img-thumbnail" width="50" height="35" />';
-        }
+            $salida["imagen_usuario"] = '<img src="img/' . $fila["imagen"] . '" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="imagen_usuario_oculta" value="'.$fila["imagen"].'"';
+        }else{
+            $salida["imagen_usuario"] = '<input type="hidden" name="imagen_usuario_oculta" value="'.$fila["imagen"].'"';
     }
+
+    }
+
+    echo json_encode($salida);
 }
+
+?>
