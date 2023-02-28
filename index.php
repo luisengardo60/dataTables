@@ -20,10 +20,9 @@
 
 <body>
 
-
   <div class="container fondo">
 
-    <h1 class="text-center sombra3"><img src="../capi/img/bandera_icono_vzla.png"> Organigrama<img src="../capi/img/bandera_icono_vzla.png"><br> Coordinación Administración Plataformas Integradas</h1>
+    <h1 class="text-center sombra3"><img src="../img/bandera_icono_vzla.png"> Organigrama<img src="../img/bandera_icono_vzla.png"><br> Coordinación Administración Plataformas Integradas</h1>
 
     <div class="row">
       <div class="col-2 offset-10">
@@ -57,7 +56,8 @@
         </thead>
       </table>
     </div><br><br>
-    <div class="table-responsive">
+
+      <div class="table-responsive">
       <table id="datos_usuario" class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -85,6 +85,8 @@
         </tbody>
       </table>
     </div>
+    <div class="table-responsive">
+    <b>Menu Adminfact</b><a href="../html/indexAdminfact.php">&#10132;</a>
   </div>
 
   <!-- Modal -->
@@ -139,6 +141,8 @@
       </div>
     </div>
   </div>
+
+ 
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
